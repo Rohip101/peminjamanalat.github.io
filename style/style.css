@@ -1,0 +1,21 @@
+/* body,
+html {
+  height: 100%;
+}
+.gambar {
+  background-position: center;
+  height: 720px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(/img/bgg.jpg);
+}
+
+form {
+  position: relative;
+} */
+
+/* img {
+  height: 500px;
+  width: 500px;
+} */
