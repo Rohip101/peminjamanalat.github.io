@@ -36,10 +36,16 @@
     <title>Peminjaman Alat</title>
   </head>
   <body>
+
+  <?php include "header.php" ?>
     <!-- <div class="gambar"></div> -->
 
     <div class="card col-sm-4 mx-auto mt-5">
-      <h5 class="card-header bg-transparent">Form Peminjaman Alat</h5>
+      <div class="card-header bg-transparent">
+        <h1>Form Peminjaman Alat</h1>
+        <p style="font-style: italic; color: grey;">Isi data peminjaman alat dengan benar dan sesuai</p>
+      </div>
+      
       <div class="card-body ">
         <form action="" method="post">
           <fieldset>

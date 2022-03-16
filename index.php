@@ -14,12 +14,14 @@
     <title>Peminjaman Alat</title>
   </head>
 <body>
+  <?php include "header.php" ?>
+
   <div>
 
   </div>
   <div class="container-md">
   <div align="center"><br>
-    <h3>Peminjaman Alat</h3>
+    <h3>Peminjaman Alat Lab Tkj</h3>
 
     <a class="btn btn-primary" href="form.php">Pinjam Alat</a>
     <br><br>
@@ -69,5 +71,7 @@
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <?php include "footer.php" ?>
 </body>
 </html>
