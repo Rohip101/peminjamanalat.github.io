@@ -1,3 +1,44 @@
+<?php
+include 'server/koneksi.php';
+
+$id = $_GET['id'];
+$query = "SELECT * FROM p_alat WHERE id = $id";
+$result = mysqli_query($koneksi, $query);
+
+$data = mysqli_fetch_array($result);
+
+
+if(isset($_POST["kirim"])) {
+
+  //ambil data dari formulir
+  $id = $data["id"];
+  $nis = $_POST['nis'];
+  $nama = $_POST['nama'];
+  $no_wa = $_POST['no_wa'];
+  $alat = implode(", ", $_POST['alat']);
+  $jumlah = $_POST['jumlah'];
+
+  //buat query
+  $sql = "UPDATE p_alat SET
+  nis = '$nis',
+  nama = '$nama',
+  no_wa = '$no_wa',
+  alat = '$alat',
+  jumlah = '$jumlah',
+  date_date=now()
+  WHERE id = '$id'
+  ";
+  $query = mysqli_query($koneksi, $sql);
+  return mysqli_affected_rows($koneksi);
+
+  if ($query) {
+    header("location: index.php");
+  }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,40 +60,41 @@
         <form action="" method="post">
           <fieldset>
             <div class="mb-3">
+            <input type="hidden" name="id" value="<?= $data["id"]; ?>">
               <label for="nis" class="form-label fw-bold">NIS</label>
-              <input type="text" name="nis" id="nis" class="form-control" placeholder="Nomor Induk Siswa" required  />
+              <input type="text" name="nis" id="nis" class="form-control" placeholder="Nomor Induk Siswa"  value="<?= $data["nis"]; ?>" required/>
             </div>
 
             <div class="mb-3">
               <label for="nama" class="form-label fw-bold">Nama</label>
-              <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required />
+              <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" value="<?= $data["nama"]; ?>" required/>
             </div>
             <div class="mb-3">
               <label for="no_wa" class="form-label fw-bold" >Nomor Whatsapp</label>
-              <input type="text" name="no_wa" id="no_wa" class="form-control" placeholder="Nomor Kamu :3" required />
+              <input type="text" name="no_wa" id="no_wa" class="form-control" placeholder="Nomor Kamu :3" value="<?= $data["no_wa"]; ?>" required/>
             </div>
             <p>Alat Yang Dipinjam :</p>
             <div class="mb-3">
               <div class="form-check">
-                <input class="form-check-input" name="alat[]" type="checkbox" id="disabledFieldsetCheck" value="tang" />
+                <input class="form-check-input" name="alat[]" type="checkbox" id="disabledFieldsetCheck" value="<?= $data["alat"]; ?>"/>
                 <label class="form-check-label" for="disabledFieldsetCheck">Tang</label>
               </div>
             </div>
             <div class="mb-3">
               <div class="form-check">
-                <input class="form-check-input" name="alat[]" type="checkbox" id="disabledFieldsetCheck" value="harddisk"  />
+                <input class="form-check-input" name="alat[]" type="checkbox" id="disabledFieldsetCheck" value="<?= $data["alat"]; ?>"  />
                 <label class="form-check-label" for="disabledFieldsetCheck">Harddisk</label>
               </div>
             </div>
             <div class="mb-3">
               <div class="form-check">
-                <input class="form-check-input" name="alat[]" type="checkbox" id="disabledFieldsetCheck" value="ssd" />
+                <input class="form-check-input" name="alat[]" type="checkbox" id="disabledFieldsetCheck" value="<?= $data["alat"]; ?>" />
                 <label class="form-check-label" for="disabledFieldsetCheck">SSD</label>
               </div>
             </div>
             <div class="mb-3">
               <label for="jumlah" class="form-label fw-bold">Jumlah Alat</label>
-              <input type="text" id="jumlah" name="jumlah" class="form-control" placeholder="Angka" required/>
+              <input type="text" id="jumlah" name="jumlah" class="form-control" placeholder="Angka" value="<?= $data["jumlah"]; ?>" required/>
             </div>
             <!-- <div class="mb-3">
               <div class="form-check">
@@ -61,7 +103,7 @@
               </div>
             </div> -->
 
-            <button type="submit" class="btn btn-warning" name="simpan">Kirim</button>
+            <button type="submit" class="btn btn-warning" name="simpan">Ubah Data</button>
           </fieldset>
         </form>
         
